@@ -8,8 +8,21 @@
       <v-text-field label="Search" prepend-inner-icon="mdi-magnify" variant="outlined" clearable density="comfortable"></v-text-field>
     </div>
     <div class="items-container">
-      <div>Home</div>
-      <div>Genre</div>
+      <div class="item active">
+        <div class="text">Home</div>
+      </div>
+      <div class="item">
+        <div class="text">Movies</div>
+      </div>
+      <div class="item">
+        <div class="text">Genre</div>
+      </div>
+      <div class="item">
+        <div class="text">Tahun</div>
+      </div>
+      <div class="item">
+        <div class="text">Negara</div>
+      </div>
     </div>
   </div>
 </template>
