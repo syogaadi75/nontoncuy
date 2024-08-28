@@ -10,16 +10,16 @@ const routes = [
     children: [
       { path: '', name: 'home', component: () => import('@/views/HomeView.vue') },
       {
-        path: '/about',
-        name: 'about',
-        component: () => import('@/views/AboutView.vue')
+        path: '/detail/:url',
+        name: 'detail',
+        component: () => import('@/views/DetailView.vue')
       }
     ]
   },
   {
-    path: '/login',
-    name: 'login',
-    component: () => import('@/views/auth/Login.vue')
+    path: '/watch/:url',
+    name: 'watch',
+    component: () => import('@/views/WatchView.vue')
   }
 ]
 

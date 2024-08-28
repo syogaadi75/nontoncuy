@@ -1,18 +1,21 @@
-import customAxios from '@/api' 
+import customAxios from '@/api'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
-export const useMoviesStore = defineStore('auth', () => {
+export const useMoviesStore = defineStore('movies', () => {
   const isLoading = ref(false)
   const isError = ref(false)
   const message = ref('')
   const latest = ref([])
   const topView = ref([])
   const detailMovie = ref({})
+  const watchMovie = ref({})
 
   const getHomeMovies = async (payload) => {
     isLoading.value = true
     isError.value = false
+    latest.value = []
+    topView.value = []
     try {
       const response = await customAxios.get('/movies')
       latest.value = response?.data?.latest || []
@@ -20,33 +23,102 @@ export const useMoviesStore = defineStore('auth', () => {
       isLoading.value = false
     } catch (error) {
       isError.value = true
-      message.value = error?.response?.data?.message || ""
+      message.value = error?.response?.data?.message || ''
       isLoading.value = false
     }
-  }  
+  }
 
-  const getDetailMovies = async (payload) => {
+  const getDetailMovie = async (payload) => {
     isLoading.value = true
     isError.value = false
+    detailMovie.value = {}
     try {
-      const response = await customAxios.get('/detail-movie?url='+payload.url) 
+      const response = await customAxios.get('/detail-movie?url=' + payload.url)
       detailMovie.value = response?.data
       isLoading.value = false
     } catch (error) {
       isError.value = true
-      message.value = error.response?.data?.message || ""
+      message.value = error.response?.data?.message || ''
       isLoading.value = false
     }
-  }  
+  }
+
+  const getWatchlMovie = async (payload) => {
+    isLoading.value = true
+    isError.value = false
+    watchMovie.value = {}
+    try {
+      const response = await customAxios.get('/watch-movie?url=' + payload.url)
+      watchMovie.value = response?.data
+      isLoading.value = false
+    } catch (error) {
+      isError.value = true
+      message.value = error.response?.data?.message || ''
+      isLoading.value = false
+    }
+  }
+
+  const getColorQuality = (quality) => {
+    switch (quality) {
+      case 'FHD':
+        return '#008080'
+      case 'WEBDL':
+        return '#00BFFF'
+      case 'WEBRip':
+        return '#1E90FF'
+      case 'HDRip':
+        return '#4169E1'
+      case 'HDTV':
+        return '#4682B4'
+      case 'HDTC':
+        return '#5F9EA0'
+      case 'HDTS':
+        return 'orange-darken-1'
+      case 'HDCAM':
+        return '#6A5ACD'
+      case 'BLU':
+        return '#8A2BE2'
+      case 'BRRip':
+        return '#9400D3'
+      case 'DVDRip':
+        return '#9932CC'
+      case 'HD CAM':
+        return '#8B008B'
+      case 'HD':
+        return 'green'
+      case 'SD':
+        return 'blue'
+      case 'CAM':
+        return 'red'
+      case 'HS':
+        return '#FF6347'
+      case 'TRAILER':
+        return '#FFD700'
+      case 'B:U':
+        return '#D3D3D3'
+      default:
+        return 'grey'
+    }
+  }
+
+  const iFormatDate = (date) => {
+    const options = { day: 'numeric', month: 'long', year: 'numeric' }
+    const formattedDate = new Date(date).toLocaleDateString('id-ID', options)
+    return formattedDate
+  }
 
   return {
     isLoading,
     isError,
     message,
     latest,
-    topView, 
+    topView,
     detailMovie,
     getHomeMovies,
-    getDetailMovies
+    getDetailMovie,
+    getColorQuality,
+    iFormatDate,
+    watchMovie,
+    getWatchlMovie
   }
 })
