@@ -1,6 +1,6 @@
 <template lang="">
   <v-card color="#060606" class="position-relative" style="height: 100vh; width: 100%">
-    <div v-if="!isLoading" class="d-flex pa-4 justify-space-between w-100" style="backdrop-filter: blur(15px); background: rgba(0, 0, 0, 0.7)">
+    <div v-if="!isLoading" class="d-flex pa-4 justify-space-between w-100" style="backdrop-filter: blur(15px); background: rgba(0, 0, 0, 0); position: absolute">
       <div class="d-flex align-center">
         <v-btn variant="tonal" icon="mdi-arrow-left" @click="goBack()"></v-btn>
         <h2 class="ml-6 julee">{{ watchMovie?.title }}</h2>
@@ -19,9 +19,9 @@
     </div>
 
     <v-skeleton-loader v-if="isLoading" :loading="isLoading" class="w-100 h-100"></v-skeleton-loader>
-    <div class="w-100 h-100 d-flex justify-center mt-8">
-      <v-skeleton-loader v-if="loading" :loading="loading" style="width: 90%; height: 80vh"></v-skeleton-loader>
-      <iframe allowfullscreen v-show="!loading || isLoading" style="width: 90%; height: 80vh" :src="watchMovie?.mainServer" frameborder="0" @load="finishLoading()"></iframe>
+    <div style="width: 100%; height: 100vh">
+      <v-skeleton-loader v-if="loading" :loading="loading" style="width: 100%; height: 100%"></v-skeleton-loader>
+      <iframe allowfullscreen v-show="!loading || isLoading" style="width: 100%; height: 100%" :src="watchMovie?.mainServer" frameborder="0" @load="finishLoading()"></iframe>
     </div>
   </v-card>
 </template>

@@ -35,7 +35,7 @@
         <h2 class="julee">Latest</h2>
       </div>
       <div>
-        <v-btn append-icon="mdi-arrow-right" color="primary" @click="modalStore.openDetailToggle()">Lihat Lainnya</v-btn>
+        <v-btn append-icon="mdi-arrow-right" color="primary">Lihat Lainnya</v-btn>
       </div>
     </dir>
     <div class="card-container">
