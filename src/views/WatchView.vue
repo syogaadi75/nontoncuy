@@ -21,7 +21,7 @@
     <v-skeleton-loader v-if="isLoading" :loading="isLoading" class="w-100 h-100"></v-skeleton-loader>
     <div class="w-100 h-100 d-flex justify-center mt-8">
       <v-skeleton-loader v-if="loading" :loading="loading" style="width: 90%; height: 80vh"></v-skeleton-loader>
-      <iframe v-show="!loading || isLoading" style="width: 90%; height: 80vh" :src="watchMovie?.mainServer" frameborder="0" @load="finishLoading()"></iframe>
+      <iframe allowfullscreen v-show="!loading || isLoading" style="width: 90%; height: 80vh" :src="watchMovie?.mainServer" frameborder="0" @load="finishLoading()"></iframe>
     </div>
   </v-card>
 </template>

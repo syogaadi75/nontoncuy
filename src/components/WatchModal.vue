@@ -11,7 +11,7 @@
 
       <div class="w-100 h-100 d-flex justify-center align-center">
         <v-skeleton-loader v-if="loading" :loading="loading" class="w-100 h-100"></v-skeleton-loader>
-        <iframe v-show="!loading" class="w-100 h-100" :src="iframeSrc" frameborder="0" @load="finishLoading()"></iframe>
+        <iframe allowfullscreen v-show="!loading" class="w-100 h-100" :src="iframeSrc" frameborder="0" @load="finishLoading()"></iframe>
       </div>
     </v-card>
   </v-dialog>
