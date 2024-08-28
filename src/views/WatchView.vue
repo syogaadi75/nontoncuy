@@ -1,6 +1,6 @@
 <template lang="">
   <v-card color="#060606" class="position-relative" style="height: 100vh; width: 100%">
-    <div v-show="!isLoading" class="d-flex pa-4 justify-space-between w-100" style="backdrop-filter: blur(15px); background: rgba(0, 0, 0, 0.7)">
+    <div v-if="!isLoading" class="d-flex pa-4 justify-space-between w-100" style="backdrop-filter: blur(15px); background: rgba(0, 0, 0, 0.7)">
       <div class="d-flex align-center">
         <v-btn variant="tonal" icon="mdi-arrow-left" @click="goBack()"></v-btn>
         <h2 class="ml-6 julee">{{ watchMovie?.title }}</h2>
