@@ -19,7 +19,7 @@
                 {{ movie?.rating }}
               </span>
             </p>
-            <v-btn class="mb-8 font-weight-bold" variant="tonal" :color="moviesStore.getColorQuality(movie?.quality)"> {{ movie?.quality }} </v-btn>
+            <v-btn class="quality font-weight-bold" variant="tonal" :color="moviesStore.getColorQuality(movie?.quality)"> {{ movie?.quality }} </v-btn>
             <v-btn prepend-icon="mdi-movie-open" color="primary" @click="changePage(movie?.href)"> Movie Detail </v-btn>
           </div>
           <div class="banner-img">
@@ -32,10 +32,10 @@
   <div class="container">
     <dir class="header-card-container">
       <div class="content-tab">
-        <h2 class="julee">Latest</h2>
+        <h2 class="julee">Film Unggulan</h2>
       </div>
       <div>
-        <v-btn append-icon="mdi-arrow-right" color="primary">Lihat Lainnya</v-btn>
+        <v-btn append-icon="mdi-arrow-right" color="primary" @click="redirect('/movies')">Lihat Lainnya</v-btn>
       </div>
     </dir>
     <div class="card-container">
@@ -61,10 +61,10 @@
   <div class="container">
     <dir class="header-card-container">
       <div class="content-tab">
-        <h2 class="julee">Top Views</h2>
+        <h2 class="julee">Film Terbaru</h2>
       </div>
       <div>
-        <v-btn append-icon="mdi-arrow-right" color="primary">Lihat Lainnya</v-btn>
+        <v-btn append-icon="mdi-arrow-right" color="primary" @click="redirect('/movies')">Lihat Lainnya</v-btn>
       </div>
     </dir>
     <div class="card-container">
@@ -107,6 +107,10 @@ moviesStore.getHomeMovies()
 const changePage = (page) => {
   const encodedPage = btoa(page)
   router.push('/detail/' + encodedPage)
+}
+
+const redirect = (page) => {
+  router.push(page)
 }
 </script>
 <style></style>

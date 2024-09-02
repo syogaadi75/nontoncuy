@@ -10,6 +10,9 @@ export const useMoviesStore = defineStore('movies', () => {
   const topView = ref([])
   const detailMovie = ref({})
   const watchMovie = ref({})
+  const searchLoading = ref(false)
+  const searchedMovies = ref({})
+  const listMovies = ref({})
 
   const getHomeMovies = async (payload) => {
     isLoading.value = true
@@ -54,6 +57,38 @@ export const useMoviesStore = defineStore('movies', () => {
     } catch (error) {
       isError.value = true
       message.value = error.response?.data?.message || ''
+      isLoading.value = false
+    }
+  }
+
+  const getSearchMovies = async (payload) => {
+    searchLoading.value = true
+    isError.value = false
+    searchedMovies.value = {}
+    try {
+      const response = await customAxios.post('/search-movies', payload)
+      searchedMovies.value = response?.data
+      console.log(response?.data, 'response?.data')
+      searchLoading.value = false
+    } catch (error) {
+      isError.value = true
+      message.value = error?.response?.data?.message || ''
+      searchLoading.value = false
+    }
+  }
+
+  const getListMovies = async (payload) => {
+    isLoading.value = true
+    isError.value = false
+    listMovies.value = {}
+    try {
+      const response = await customAxios.post('/list-movies', payload)
+      listMovies.value = response?.data
+      console.log(response?.data, 'response?.data')
+      isLoading.value = false
+    } catch (error) {
+      isError.value = true
+      message.value = error?.response?.data?.message || ''
       isLoading.value = false
     }
   }
@@ -119,6 +154,11 @@ export const useMoviesStore = defineStore('movies', () => {
     getColorQuality,
     iFormatDate,
     watchMovie,
-    getWatchlMovie
+    getWatchlMovie,
+    getSearchMovies,
+    searchedMovies,
+    getListMovies,
+    listMovies,
+    searchLoading
   }
 })

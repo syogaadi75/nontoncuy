@@ -17,10 +17,10 @@
         <img :src="detailMovie?.imgSrc" alt="Film" />
       </div>
       <div v-if="!isLoading" class="info">
-        <v-btn class="font-weight-bold" v-for="quality in detailMovie?.qualities" :key="quality" :color="`${moviesStore.getColorQuality(quality.name)} mr-2`" variant="tonal">
+        <v-btn class="font-weight-bold mr-2" v-for="quality in detailMovie?.qualities" :key="quality" :color="`${moviesStore.getColorQuality(quality.name)} mr-2`" variant="tonal">
           {{ quality.name }}
         </v-btn>
-        <v-btn class="font-weight-bold" color="orange-darken-1 mr-2" variant="tonal" prepend-icon="mdi-star">
+        <v-btn class="font-weight-bold mr-2" color="orange-darken-1" variant="tonal" prepend-icon="mdi-star">
           {{ detailMovie?.rating?.value || '-' }}, <v-icon class="mx-1" icon="mdi-account-star"></v-icon> {{ detailMovie?.rating?.count || '-' }}
         </v-btn>
         <v-btn class="font-weight-bold" color="blue-darken-1" variant="tonal" prepend-icon="mdi-timer-outline"> {{ detailMovie?.duration }} </v-btn>
@@ -68,6 +68,7 @@
   </div>
 </template>
 <script setup>
+import { onMounted, watch } from 'vue'
 import { useModalStore } from '@/store/modalStore'
 import { useMoviesStore } from '@/store/moviesStore'
 import { storeToRefs } from 'pinia'
@@ -78,17 +79,26 @@ const modalStore = useModalStore()
 const { isLoading, detailMovie, isLoading: loadingNonton, watchMovie } = storeToRefs(moviesStore)
 
 const route = useRoute()
-const url = atob(route.params.url)
-const router = useRouter()
+const url = route.params.url
+const decodedUrl = atob(url)
+watch(
+  () => route.params.url,
+  (newUrl) => {
+    const decodedUrl = atob(newUrl)
+    moviesStore.getDetailMovie({ url: decodedUrl })
+  }
+)
 
-moviesStore.getDetailMovie({ url })
+onMounted(() => {
+  moviesStore.getDetailMovie({ url: decodedUrl })
+})
+
+const router = useRouter()
 
 const tonton = (url) => {
   const encodedPage = btoa(url)
   router.push('/watch/' + encodedPage)
 }
-
-import { onMounted } from 'vue'
 
 onMounted(() => {
   window.scrollTo({
