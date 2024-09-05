@@ -90,7 +90,7 @@ watch(
 )
 
 onMounted(() => {
-  // moviesStore.getDetailMovie({ url: decodedUrl })
+  moviesStore.getDetailMovie({ url: decodedUrl })
 })
 
 const router = useRouter()
