@@ -137,9 +137,15 @@ export const useMoviesStore = defineStore('movies', () => {
   }
 
   const iFormatDate = (date) => {
-    const options = { day: 'numeric', month: 'long', year: 'numeric' }
+    const options = { day: 'numeric', month: 'long', year: 'numeric' } 
+    function isValidDate(d) {
+      return d instanceof Date && !isNaN(d);
+    }
+    if(!isValidDate(new Date(date))) {
+      return "-";
+    }
     const formattedDate = new Date(date).toLocaleDateString('id-ID', options)
-    return formattedDate
+    return formattedDate;
   }
 
   return {

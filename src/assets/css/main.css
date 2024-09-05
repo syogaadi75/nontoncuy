@@ -82,11 +82,17 @@ body {
   margin: 10px 5%;
   overflow: hidden;
 }
+.banner-carousel.detail {
+  height: 58vh;
+}
 .banner-container {
   display: flex;
   justify-content: space-between;
   gap: 70px;
   padding-top: 20px;
+}
+.banner-container.detail {
+  padding-left: 64px;
 }
 
 .banner-container .quality {
@@ -325,9 +331,6 @@ body {
     padding-top: 15px;
     flex-direction: column;
   }
-  .banner-container.banner-container {
-    padding-left: 25px;
-  }
 
   .banner-container .banner-info {
     width: 94vw;
@@ -424,12 +427,16 @@ body {
     z-index: 20;
   }
 
-  .banner-container.banner-container {
+  .banner-container.detail {
     padding-left: 0px;
   }
 
   .banner-container .info {
     bottom: 10px;
     right: 10px;
+  }
+
+  .banner-carousel.detail {
+    height: 48vh;
   }
 }

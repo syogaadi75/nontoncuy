@@ -1,5 +1,5 @@
 <template>
-  <div class="banner-carousel" style="height: 58vh">
+  <div class="banner-carousel detail">
     <v-skeleton-loader v-if="isLoading" :loading="isLoading" width="100%" height="58vh"></v-skeleton-loader>
     <div class="banner-container detail">
       <div class="banner-info">
