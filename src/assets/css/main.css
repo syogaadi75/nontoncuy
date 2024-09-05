@@ -325,6 +325,9 @@ body {
     padding-top: 15px;
     flex-direction: column;
   }
+  .banner-container.banner-container {
+    padding-left: 25px;
+  }
 
   .banner-container .banner-info {
     width: 94vw;
@@ -419,5 +422,14 @@ body {
     left: 0;
     bottom: 80px;
     z-index: 20;
+  }
+
+  .banner-container.banner-container {
+    padding-left: 0px;
+  }
+
+  .banner-container .info {
+    bottom: 10px;
+    right: 10px;
   }
 }
