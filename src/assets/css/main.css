@@ -199,6 +199,7 @@ body {
 .card-container .rating {
   position: absolute;
   z-index: 20;
+  text-shadow: 0 0 2px #0f0f0f, 0 0 3px #0f0f0f;
 }
 
 .card-container .quality {
@@ -212,6 +213,7 @@ body {
   left: 0;
   bottom: 80px;
   z-index: 20;
+  text-shadow: 0 0 2px #0f0f0f, 0 0 3px #0f0f0f;
 }
 
 .header-card-container {
@@ -269,6 +271,15 @@ body {
   line-height: 1.5;
   max-height: calc(1.5em * 4);
 }
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.5;
+  max-height: calc(1.5em * 2);
+}
 
 .search-modal-container {
   width: 100%;
@@ -323,19 +334,20 @@ body {
 
   .banner-carousel {
     margin: 10px 3%;
-    height: 40vh;
+    height: auto;
   }
   .banner-container {
     justify-content: start;
     gap: 10px;
     padding-top: 15px;
+    padding-bottom: 15px;
     flex-direction: column;
   }
 
   .banner-container .banner-info {
     width: 94vw;
     padding-left: 15px;
-    height: 40vh;
+    height: auto;
     z-index: 1;
   }
 
@@ -423,7 +435,8 @@ body {
   .card-container .time {
     position: absolute;
     left: 0;
-    bottom: 80px;
+    bottom: 60px;
+    font-size: 10px;
     z-index: 20;
   }
 

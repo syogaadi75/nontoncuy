@@ -4,7 +4,7 @@
     <div class="banner-container detail">
       <div class="banner-info">
         <h2 class="julee mb-4">{{ detailMovie?.title }}</h2>
-        <div class="text-grey-darken-1 mb-2">{{ moviesStore.iFormatDate(new Date(detailMovie?.release_date)) }}</div>
+        <div class="text-grey-darken-1 mb-2 line-clamp-2">{{ moviesStore.iFormatDate(new Date(detailMovie?.release_date)) }}</div>
         <p style="font-size: 14px" class="mb-10 line-clamp-8 pr-2">{{ detailMovie?.sinopsis }}</p>
         <div>
           <v-btn prepend-icon="mdi-movie-play" color="primary" @click="tonton(detailMovie?.href)"> Watch </v-btn>

@@ -5,7 +5,7 @@
       <slide v-for="movie in latest" :key="movie">
         <div class="banner-container">
           <div class="banner-info">
-            <h2 class="julee mb-4">
+            <h2 class="julee mb-4 line-clamp-2">
               {{ movie?.title }}
             </h2>
             <p>
@@ -53,7 +53,7 @@
         <v-btn size="small" class="time font-weight-bold" variant="tonal" color="white"> {{ movie.duration || '-' }} Min</v-btn>
         <img :src="movie.imgSrc" :alt="movie.title" />
         <div class="card-content">
-          <div style="font-size: 13px">{{ movie.title }}</div>
+          <div class="line-clamp-2" style="font-size: 13px">{{ movie.title }}</div>
         </div>
       </div>
     </div>
@@ -82,7 +82,7 @@
         <v-btn size="small" class="time font-weight-bold" variant="tonal" color="white"> {{ movie.duration || '-' }} Min</v-btn>
         <img :src="movie.imgSrc" :alt="movie.title" />
         <div class="card-content">
-          <div style="font-size: 13px">{{ movie.title }}</div>
+          <div class="line-clamp-2" style="font-size: 13px">{{ movie.title }}</div>
         </div>
       </div>
     </div>
