@@ -4,6 +4,7 @@
     <div class="banner-container detail">
       <div class="banner-info">
         <h2 class="julee mb-4">{{ detailMovie?.title }}</h2>
+        {{ detailMovie?.imgSrc }}
         <div class="text-grey-darken-1 mb-2">{{ moviesStore.iFormatDate(new Date(detailMovie?.release_date)) }}</div>
         <p style="font-size: 14px" class="mb-10 line-clamp-8 pr-2">{{ detailMovie?.sinopsis }}</p>
         <div>

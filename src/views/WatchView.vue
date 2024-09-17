@@ -1,11 +1,11 @@
 <template lang="">
   <v-card color="#060606" class="position-relative bg-dark" style="min-height: 100vh; width: 100%">
     <v-skeleton-loader v-if="isLoading" :loading="isLoading" class="w-100 h-100"></v-skeleton-loader>
-    <div v-if="!isLoading" class="d-flex pa-4 justify-space-between w-100" style="backdrop-filter: blur(15px); background: rgba(0, 0, 0, 0); position: absolute">
+    <div v-show="!isLoading" class="d-flex pa-4 justify-space-between w-100" style="backdrop-filter: blur(15px); background: rgba(0, 0, 0, 0); position: absolute">
       <template v-if="!watchMovie?.eps?.isEps">
         <div class="d-flex align-center">
-          <v-btn variant="tonal" icon="mdi-arrow-left" @click="goBack()"></v-btn>
-          <h2 class="ml-6 julee">{{ watchMovie?.title }}</h2>
+          <v-btn style="text-shadow: 0 0 3px #060606, 0 0 5px #060606;" variant="tonal" icon="mdi-arrow-left" @click="goBack()"></v-btn>
+          <h2 class="ml-6 julee" style="text-shadow: 0 0 3px #060606, 0 0 5px #060606;">{{ watchMovie?.title }}</h2>
         </div>
         <v-btn color="primary">
           <v-icon icon="mdi-movie-open-cog" class="mr-1"></v-icon> Pilih Server
@@ -29,7 +29,7 @@
     <template v-if="!watchMovie?.eps?.isEps">
       <div style="width: 100%; height: 100vh">
         <v-skeleton-loader v-if="loading" :loading="loading" style="width: 100%; height: 100%"></v-skeleton-loader>
-        <iframe allowfullscreen v-show="!loading || isLoading" style="width: 100%; height: 100%" :src="watchMovie?.mainServer" frameborder="0" @load="finishLoading()"></iframe>
+        <iframe allowfullscreen v-show="!loading || isLoading" style="width: 100%; height: 100%;" allowtransparency="true" :src="watchMovie?.mainServer" frameborder="0" @load="finishLoading()"></iframe>
       </div>
     </template>
     <template v-if="watchMovie?.eps?.isEps">
@@ -60,7 +60,9 @@ const route = useRoute()
 const url = atob(route.params.url)
 const moviesStore = useMoviesStore()
 const { isLoading, watchMovie } = storeToRefs(moviesStore)
+
 moviesStore.getWatchlMovie({ url })
+
 
 const loading = ref(true)
 

@@ -36,7 +36,7 @@ export const useMoviesStore = defineStore('movies', () => {
     isError.value = false
     detailMovie.value = {}
     try {
-      const response = await customAxios.get('/detail-movie?url=' + payload.url)
+      const response = await customAxios.get('/v2/detail-movie?url=' + payload.url)
       detailMovie.value = response?.data
       isLoading.value = false
     } catch (error) {
@@ -66,7 +66,7 @@ export const useMoviesStore = defineStore('movies', () => {
     isError.value = false
     searchedMovies.value = {}
     try {
-      const response = await customAxios.post('/search-movies', payload)
+      const response = await customAxios.post('/v2/search-movies', payload)
       searchedMovies.value = response?.data
       console.log(response?.data, 'response?.data')
       searchLoading.value = false
@@ -82,7 +82,7 @@ export const useMoviesStore = defineStore('movies', () => {
     isError.value = false
     listMovies.value = {}
     try {
-      const response = await customAxios.post('/list-movies', payload)
+      const response = await customAxios.post('/v2/list-movies', payload)
       listMovies.value = response?.data
       console.log(response?.data, 'response?.data')
       isLoading.value = false
