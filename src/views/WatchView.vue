@@ -1,10 +1,9 @@
 <template lang="">
-  <v-card color="#060606" class="position-relative bg-dark" style="min-height: 100vh; width: 100%">
-    <v-skeleton-loader v-if="isLoading" :loading="isLoading" class="w-100 h-100"></v-skeleton-loader>
-    <div v-show="!isLoading" class="d-flex pa-4 justify-space-between w-100" style="backdrop-filter: blur(15px); background: rgba(0, 0, 0, 0); position: absolute">
+  <v-card color="#060606" class="position-relative bg-dark" style="min-height: 100vh; width: 100%"> 
+    <div class="d-flex pa-4 justify-space-between w-100 flex-column flex-md-row" style="gap: 12px; backdrop-filter: blur(15px);">
       <template v-if="!watchMovie?.eps?.isEps">
         <div class="d-flex align-center">
-          <v-btn style="text-shadow: 0 0 3px #060606, 0 0 5px #060606;" variant="tonal" icon="mdi-arrow-left" @click="goBack()"></v-btn>
+          <v-btn style="text-shadow: 0 0 3px #060606, 0 0 5px #060606;" variant="tonal" icon="mdi-arrow-left" @click="goBack()"></v-btn> 
           <h2 class="ml-6 julee" style="text-shadow: 0 0 3px #060606, 0 0 5px #060606;">{{ watchMovie?.title }}</h2>
         </div>
         <v-btn color="primary">
@@ -26,15 +25,18 @@
         </div> 
       </template>
     </div> 
+    <div class="px-4 px-md-16 mt-4 mb-8 height-video" v-if="isLoading">
+      <v-skeleton-loader :loading="true" style="width: 100%; height: 100%"></v-skeleton-loader>
+    </div>
     <template v-if="!watchMovie?.eps?.isEps">
-      <div style="width: 100%; height: 100vh">
+      <div class="px-4 px-md-16 mt-4 mb-8 height-video">
         <v-skeleton-loader v-if="loading" :loading="loading" style="width: 100%; height: 100%"></v-skeleton-loader>
         <iframe allowfullscreen v-show="!loading || isLoading" style="width: 100%; height: 100%;" allowtransparency="true" :src="watchMovie?.mainServer" frameborder="0" @load="finishLoading()"></iframe>
       </div>
     </template>
     <template v-if="watchMovie?.eps?.isEps">
       <div class="container">
-        <div style="width: 100%; height: 65vh; margin-top: 6.5%; margin-bottom: 20px;">
+        <div style="width: 100%; margin-bottom: 20px;" class="height-video-eps">
           <v-skeleton-loader v-if="loading" :loading="loading" style="width: 100%; height: 100%"></v-skeleton-loader>
           <iframe allowfullscreen v-show="!loading || isLoading" style="width: 100%; height: 100%" :src="watchMovie?.mainServer" frameborder="0" @load="finishLoading()"></iframe>
         </div>
@@ -61,6 +63,7 @@ const url = atob(route.params.url)
 const moviesStore = useMoviesStore()
 const { isLoading, watchMovie } = storeToRefs(moviesStore)
 
+isLoading.value = true
 moviesStore.getWatchlMovie({ url })
 
 
@@ -84,4 +87,21 @@ const changeServer = (url) => {
   }); 
 }
 </script>
-<style lang=""></style>
+<style>
+.height-video {
+  height: 90vh;
+}
+.height-video-eps {
+  height: 60vh;
+}
+
+@media (max-width: 768px) {
+  .height-video {
+    height: 27vh;
+  }
+
+  .height-video-eps {
+    height: 27vh;
+  }
+}
+</style>
